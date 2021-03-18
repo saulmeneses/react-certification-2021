@@ -15,9 +15,9 @@ const Title = styled(Typography).attrs(() => ({
 
 function HomePage() {
   const sectionRef = useRef(null);
-  const {
-    searchResult: { items },
-  } = useCustom();
+  const { searchResult } = useCustom();
+
+  const { items } = searchResult;
 
   return (
     <section className="homepage" ref={sectionRef}>

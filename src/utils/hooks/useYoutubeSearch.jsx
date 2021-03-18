@@ -47,7 +47,6 @@ const useYoutubeSearch = (params = defaultParams, initialQuery = '') => {
       }
 
       dispatch({ type: types.FETCH_YOUTUBE_DONE, payload });
-      return payload;
     },
     [params]
   );
