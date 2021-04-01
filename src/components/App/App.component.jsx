@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
 import CustomProvider from '../../providers/Custom';
 
+import PrivateRoute from '../Private';
 import Layout from '../Layout';
 import HomePage from '../../pages/Home';
 import VideoPage from '../../pages/Video';
 import NotFound from '../../pages/NotFound';
+import FavoritePage from '../../pages/Favorite';
+import FavoriteVideoPage from '../../pages/FavoriteVideo';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <AuthProvider>
         <CustomProvider>
           <Layout>
@@ -23,12 +26,14 @@ function App() {
               <Route path="/v/:videoId">
                 <VideoPage />
               </Route>
+              <PrivateRoute exact path="/favs" component={FavoritePage} />
+              <PrivateRoute path="/favs/:videoId" component={FavoriteVideoPage} />
               <Route component={NotFound} />
             </Switch>
           </Layout>
         </CustomProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </Router>
   );
 }
 
